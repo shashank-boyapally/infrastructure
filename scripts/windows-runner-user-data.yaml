@@ -158,7 +158,7 @@ tasks:
           for (`$i = 1; `$i -le 3 -and -not `$installed; `$i++) {
               Get-Process msiexec -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue
               Start-Sleep 5
-              `$proc = Start-Process msiexec.exe -PassThru -ArgumentList "/i `"`$wslMsi`" /quiet /norestart /l*v `$env:TEMP\wslmsi.log"
+              `$proc = Start-Process msiexec.exe -PassThru -ArgumentList '/i', `$wslMsi, '/quiet', '/norestart', '/l*v', "`$env:TEMP\wslmsi.log"
               if (`$proc.WaitForExit(600000)) {
                   if (`$proc.ExitCode -eq 0) { `$installed = `$true } else { Write-Warning "msiexec attempt `$i exited `$(`$proc.ExitCode)" }
               } else {
